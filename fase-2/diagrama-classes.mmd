@@ -1,0 +1,128 @@
+classDiagram
+    direction TB
+
+    class PerfilRisco {
+        <<enumeration>>
+        CONSERVADOR
+        MODERADO
+        ARROJADO
+        -String descricao
+        -double percentualCriptoSugerido
+    }
+
+    class TipoAlerta {
+        <<enumeration>>
+        QUEDA_PRECO
+        ALTA_PRECO
+        META_ATINGIDA
+        REBALANCEAMENTO
+        OPORTUNIDADE
+        -String descricao
+    }
+
+    class Usuario {
+        -int id
+        -String nome
+        -String email
+        -String senha
+        -String cpf
+        -LocalDate dataNascimento
+        -PerfilRisco perfilRisco
+        -List~Carteira~ carteiras
+        -List~Empresa~ empresas
+        -List~Meta~ metas
+        -List~Alerta~ alertas
+        +adicionarCarteira(Carteira) void
+        +adicionarEmpresa(Empresa) void
+        +adicionarMeta(Meta) void
+        +adicionarAlerta(Alerta) void
+        +calcularPatrimonioTotal() double
+        +getAlertasNaoLidos() int
+    }
+
+    class Empresa {
+        -int id
+        -String nome
+        -String cnpj
+        -String descricao
+    }
+
+    class Alerta {
+        -int id
+        -TipoAlerta tipoAlerta
+        -String mensagem
+        -LocalDateTime dataGeracao
+        -boolean lido
+        +marcarComoLido() void
+    }
+
+    class Carteira {
+        -int id
+        -String nome
+        -String descricao
+        -Empresa empresa
+        -List~Aporte~ aportes
+        +adicionarAporte(Aporte) void
+        +calcularValorAtual() double
+        +calcularTotalInvestido() double
+        +calcularRentabilidade() double
+    }
+
+    class Meta {
+        -int id
+        -String descricao
+        -double valorAlvo
+        -int prazoMeses
+        -LocalDate dataCriacao
+        -Carteira carteira
+        +calcularProgresso() double
+        +isAtingida() boolean
+        +calcularAporteMensalNecessario() double
+        +getDataLimite() LocalDate
+    }
+
+    class Aporte {
+        -int id
+        -CriptoAtivo criptoAtivo
+        -double quantidade
+        -double valorInvestido
+        -double precoUnitarioNaCompra
+        -LocalDate dataAporte
+        +calcularValorAtual() double
+        +calcularRentabilidade() double
+        +calcularLucro() double
+    }
+
+    class CriptoAtivo {
+        -int id
+        -String nome
+        -String sigla
+        -String descricao
+        -List~Cotacao~ historicoCotacoes
+        +adicionarCotacao(Cotacao) void
+        +getCotacaoAtual() Cotacao
+        +getPrecoAtualBrl() double
+    }
+
+    class Cotacao {
+        -int id
+        -double valorBrl
+        -double valorUsd
+        -LocalDateTime dataHora
+        +getVariacaoPercentual(Cotacao) double
+    }
+
+    Usuario --> PerfilRisco : tem
+    Usuario "1" --> "*" Alerta : recebe
+    Alerta --> TipoAlerta : tipo
+
+    Usuario "1" --> "*" Empresa : possui
+    Usuario "1" --> "*" Carteira : possui
+    Usuario "1" --> "*" Meta : define
+
+    Carteira "*" --> "0..1" Empresa : financiada por
+    Meta "*" --> "1" Carteira : acompanha
+    Carteira "1" --> "*" Aporte : contem
+
+    Aporte "*" --> "1" CriptoAtivo : referencia
+    CriptoAtivo "1" --> "*" Cotacao : historico
