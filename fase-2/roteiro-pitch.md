@@ -1,52 +1,51 @@
 # Roteiro — Pitch Video Fase 2
 
 **Duracao:** ~1:40 - 2:00
-**Formato:** gravacao de tela (Google Slides / Canva) com voce narrando por cima. Webcam no canto opcional. Sem cortes, take unico.
+**Formato:** gravacao de tela dos slides (pitch-slides.html) com narracao por cima. Take unico, sem corte.
+**Gravacao:** qualquer integrante do grupo pode narrar — trabalho foi coletivo.
 
 ---
 
 ## Setup
 
-- Montar **3 slides** num Canva ou Google Slides
-- Gravar com OBS, Loom ou o proprio Google Meet (compartilhar tela + gravar)
-- Nao precisa editar: e um take so, passando os slides enquanto fala
+- Abrir `fase-2/pitch-slides.html` em tela cheia (F11 no Chrome)
+- Gravar com OBS, Loom ou compartilhamento de tela do Google Meet
+- Avancar slides com seta direita ou espaco
+- 4 slides no total — 1 por momento do roteiro
 
-| Slide | Conteudo |
+| Slide | Momento |
 |---|---|
-| 1 | Nome "Cyphin", subtitulo "Copiloto financeiro com IA para cripto", nome do grupo e RMs |
-| 2 | Titulo "O Problema" + 3 bullet points curtos (investidor no escuro / exchanges so mostram preco / ninguem oferece inteligencia) |
-| 3 | Diagrama de classes (imagem do `diagrama-classes.png`) |
+| 1 | Abertura — Cyphin + grupo 89 |
+| 2 | Gap de mercado + o que o Cyphin resolve |
+| 3 | Modelagem em Java — 8 classes + 2 enums |
+| 4 | Fechamento — controle e inteligencia |
 
 ---
 
 ## Fala
 
-### Slide 1 (0:00 - 0:15)
+### Slide 1 — Abertura (0:00 - 0:12)
 
-> Ola, meu nome e Luiz Felipe, grupo 89, e esse e o pitch do Cyphin.
->
-> O Cyphin e um copiloto financeiro com inteligencia artificial pra investidores de criptoativos. Uma plataforma web onde o usuario registra seus aportes, acompanha o portfolio em tempo real e recebe analises personalizadas.
+> Ola, somos o grupo 89, e este e o pitch do **Cyphin**: o copiloto financeiro com inteligencia artificial para criptoativos.
 
-### Slide 2 (0:15 - 0:40)
+### Slide 2 — Gap e Solucao (0:12 - 0:40)
 
-> Na Fase 1 a gente identificou que o Brasil tem mais de 10 milhoes de investidores em cripto, e a maioria investe no escuro. Compra por impulso, vende por panico, nao sabe quanto ganhou ou perdeu de verdade.
+> Hoje, as exchanges mostram apenas preco e saldo. Aplicativos tradicionais ignoram cripto. E plataformas famosas sao genericas — elas nao conhecem a sua carteira.
 >
-> As exchanges mostram preco e saldo, nada mais. Os apps financeiros nem reconhecem cripto. E plataformas como CoinGecko sao genericas — nao conhecem o portfolio do usuario.
->
-> O Cyphin preenche esse gap: da inteligencia personalizada pro investidor pessoa fisica, com base no perfil de risco dele e nos dados reais da carteira.
+> O Cyphin preenche exatamente esse gap. Nossa plataforma web da inteligencia personalizada para o investidor pessoa fisica, baseada no perfil de risco dele e nos dados reais do seu portfolio em tempo real.
 
-### Slide 3 — diagrama (0:40 - 1:45)
+### Slide 3 — Modelagem em Java (0:40 - 1:40)
 
-> Agora a modelagem em Java. Sao 8 classes e 2 enums.
+> Para tirar essa inteligencia do papel e garantir as entregas da Fase 1, desenvolvemos nossa modelagem em Java com **8 classes e 2 Enums**. Tudo orbita em torno de uma classe principal:
 >
-> O centro de tudo e o **Usuario**. Ele tem dados pessoais e um **PerfilRisco** — um enum com tres niveis: conservador, moderado e arrojado.
+> - O **Usuario**. E nele que vinculamos o enum **PerfilRisco** (Conservador, Moderado ou Arrojado). E esse perfil que dita como a nossa inteligencia artificial vai agir.
 >
-> O Usuario possui **Empresas**, porque o PO tem varias empresas de onde envia valores pra investimento. E ele organiza esses investimentos em **Carteiras**. Cada carteira pode estar vinculada a uma empresa.
+> - Esse usuario organiza seu dinheiro em **Carteiras**, que podem estar vinculadas a diferentes **Empresas** de onde ele envia os valores.
 >
-> Dentro da carteira ficam os **Aportes** — o registro do investimento: qual cripto comprou, quanto pagou e quando. O aporte referencia um **CriptoAtivo**, tipo Bitcoin ou Ethereum, que tem um historico de **Cotacoes** em real e dolar. E assim o sistema calcula a rentabilidade real.
+> - Dentro das carteiras, temos a classe **Aportes**, que e o motor do sistema. Ela cruza o que foi comprado com o historico da classe **Cotacoes** (em real e dolar) do **CriptoAtivo**. E aqui que calculamos a rentabilidade real e tiramos o investidor da ilusao de preco.
 >
-> O usuario tambem define **Metas** financeiras ligadas a uma carteira. A Meta calcula o progresso e quanto falta aportar por mes pra atingir o objetivo.
->
-> E por ultimo, o sistema gera **Alertas** contextualizados. O enum **TipoAlerta** define as categorias: queda de preco, alta, meta atingida, oportunidade de aporte.
->
-> Cada classe existe porque mapeia uma necessidade real do produto. Esse foi o Cyphin, grupo 89. Obrigado!
+> - Por fim, para evitar que o usuario "invista no escuro", criamos as classes **Metas** e **Alertas**. A meta calcula o que falta para o objetivo, e o Alerta (baseado no enum **TipoAlerta**) avisa sobre oportunidades de aporte ou quedas bruscas.
+
+### Slide 4 — Fechamento (1:40 - 2:00)
+
+> Nossa arquitetura em Java mapeia e resolve uma necessidade direta do produto validada na Fase 1, entregando controle e inteligencia para quem investe.
